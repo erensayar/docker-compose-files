@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+    db:
+        image: mysql:5.6.50
+        restart: always
+        container_name: my_mysql
+        environment:
+          MYSQL_DATABASE: test_db
+          MYSQL_ROOT_PASSWORD: Appcent2017!
+          MYSQL_ROOT_HOST: '%'
+        ports:
+          - "3306:3306"
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      restart: always
+      container_name: pehape
+      environment:
+        PMA_HOST: db
+        PMA_USER: root
+        PMA_PASSWORD: Appcent2017!
+      ports:
+        - "9999:80"
