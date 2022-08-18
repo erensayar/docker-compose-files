@@ -1,0 +1,11 @@
+ 
+version: '3'
+
+services:
+
+  postgres:
+    #restart: always
+    container_name: redis-cache
+    image: 'redis'
+    ports:
+      - "6379:6379"

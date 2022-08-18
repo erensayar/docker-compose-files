@@ -1,0 +1,58 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:latest
+    #restart: always
+    networks:
+      - redmine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_DB=redmine_postgres_db'
+      - 'POSTGRES_PASSWORD=password'  
+      
+  redmine:
+    image: redmine:latest
+    #restart: always
+    networks:
+      - redmine
+    volumes:
+      - redmine-data:/usr/src/redmine/files
+    ports:
+      - 7000:3000
+    environment:
+      - 'REDMINE_DB=db'
+      - 'REDMINE_DB_PASSWORD=password'
+      
+volumes:
+  postgres-data:
+  redmine-data:
+
+networks:
+  redmine:
+    driver: bridge
+
+
+
+# version: '3.1'
+# 
+# services:
+# 
+#   redmine:
+#     image: redmine
+#     restart: always
+#     ports:
+#       - 8080:3000
+#     environment:
+#       REDMINE_DB_MYSQL: db
+#       REDMINE_DB_PASSWORD: example
+#       REDMINE_SECRET_KEY_BASE: supersecretkey
+# 
+#   db:
+#     image: mysql:5.7
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: example
+#       MYSQL_DATABASE: redmine

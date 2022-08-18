@@ -13,7 +13,7 @@ services:
   sonarqube:
     image: docker.io/bitnami/sonarqube:9
     ports:
-      - '9000:9000'
+      - '9855:9000'
     volumes:
       - 'sonarqube_data:/opt/sonarqube/data'
     depends_on:
@@ -22,7 +22,7 @@ services:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
       - SONARQUBE_DATABASE_HOST=postgresql
-      - SONARQUBE_DATABASE_PORT_NUMBER=5432
+      - SONARQUBE_DATABASE_PORT_NUMBER=9854
       - SONARQUBE_DATABASE_USER=bn_sonarqube
       - SONARQUBE_DATABASE_NAME=bitnami_sonarqube
 volumes:
